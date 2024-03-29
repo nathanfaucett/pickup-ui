@@ -54,4 +54,4 @@
 	});
 </script>
 
-<div bind:this={element} class="w-full h-full z-0" />
+<div bind:this={element} class="z-0 h-full w-full" />

@@ -1,7 +1,7 @@
 <svelte:options immutable />
 
 <script lang="ts" context="module">
-	import { get, writable } from 'svelte/store';
+	import { writable } from 'svelte/store';
 
 	let search = writable('');
 
@@ -45,6 +45,7 @@
 	import { setUrlParams } from '$lib/util';
 	import { page } from '$app/stores';
 	import { waitGeolocationPosition } from '$lib/stores/location';
+	import Map from '$lib/components/Map.svelte';
 
 	$: searchParams = parseSearchParams($page.url);
 
@@ -129,6 +130,4 @@
 	</div>
 </div>
 
-<div class="container mx-auto">
-	<div class="flex flex-row justify-center p-2"></div>
-</div>
+<Map bind:latitude bind:longitude />
