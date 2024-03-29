@@ -1,12 +1,7 @@
 import { derived, get } from 'svelte/store';
 import { localstorageWritable } from 'svelte-localstorage-writable';
 import { isOnline } from './online';
-import {
-	getAuthToken,
-	setAuthToken,
-	pickupConfiguration,
-  userApi
-} from '$lib/openapi';
+import { getAuthToken, setAuthToken, pickupConfiguration, userApi } from '$lib/openapi';
 import EventEmitter from 'eventemitter3';
 import { base } from '$app/paths';
 import { goto } from '$app/navigation';
@@ -20,7 +15,7 @@ const userWritable = localstorageWritable<User | null>('user', null, {
 export const currentUser = derived(userWritable, (user) => user);
 export const signedIn = derived(userWritable, (user) => !!user);
 
-export const userEmitter = new EventEmitter<{ user(user: User): void; signOut(): void }>();
+const userEmitter = new EventEmitter<{ user(user: User): void; signOut(): void }>();
 
 export function waitForUser() {
 	const user = get(userWritable);

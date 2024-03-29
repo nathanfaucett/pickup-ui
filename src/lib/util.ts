@@ -1,4 +1,6 @@
+import { page } from '$app/stores';
 import { MAX_INT, random, float, nextIntInRange } from '@aicacia/rand';
+import { get } from 'svelte/store';
 
 export function createInsecureID() {
   return (random() * MAX_INT) | 0;
@@ -33,40 +35,18 @@ export function getRequiredTimezone() {
   return getTimezone() || 'America/New_York';
 }
 
-// {
-//   "place_id": 327969073,
-//   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
-//   "osm_type": "way",
-//   "osm_id": 51311477,
-//   "lat": "33.78793335",
-//   "lon": "-84.30283538311988",
-//   "category": "building",
-//   "type": "yes",
-//   "place_rank": 30,
-//   "importance": 0.00000999999999995449,
-//   "addresstype": "building",
-//   "name": "Emory Garden Condominiums Bldgs N-R",
-//   "display_name": "Emory Garden Condominiums Bldgs N-R, 1111, Clairemont Avenue, Clairemont Condos, Decatur, DeKalb County, Georgia, 30030, United States",
-//   "address": {
-//       "building": "Emory Garden Condominiums Bldgs N-R",
-//       "house_number": "1111",
-//       "road": "Clairemont Avenue",
-//       "neighbourhood": "Clairemont Condos",
-//       "town": "Decatur",
-//       "county": "DeKalb County",
-//       "state": "Georgia",
-//       "ISO3166-2-lvl4": "US-GA",
-//       "postcode": "30030",
-//       "country": "United States",
-//       "country_code": "us"
-//   },
-//   "boundingbox": [
-//       "33.7876982",
-//       "33.7881622",
-//       "-84.3029934",
-//       "-84.3026993"
-//   ]
-// }
+export function setUrlParams(params: { [key: string]: number | string | null | undefined }) {
+	const url = get(page).url;
+	Object.entries(params).forEach(([key, value]) => {
+		if (value == null) {
+			url.searchParams.delete(key);
+		} else {
+			url.searchParams.set(key, value + "");
+		}
+	});
+	history.replaceState({}, '', url);
+}
+
 export type LocationResult = {
   place_id: number;
   licence: string;
