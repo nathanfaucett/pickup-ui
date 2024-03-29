@@ -1,0 +1,6 @@
+apiVersion: v2
+name: pickup-ui
+description: pickup ui
+type: application
+version: 0.1.0
+appVersion: latest

@@ -1,0 +1,32 @@
+{
+	"name": "Pickup",
+	"short_name": "Pickup",
+	"description": "Pickup: What's in your vanity?",
+	"version": "0.1.0",
+	"manifest_version": 3,
+	"icons": [
+		{
+			"src": "/icon256x256.webp",
+			"sizes": "256x256",
+			"type": "image/webp"
+		}
+	],
+	"screenshots": [
+		{
+			"src": "/screenshot.webp",
+			"sizes": "423x860"
+		},
+		{
+			"src": "/screenshot-wide.webp",
+			"sizes": "1715x1024",
+			"form_factor": "wide"
+		}
+	],
+	"shortcuts": [],
+	"id": "/?source=pwa",
+	"start_url": "/?source=pwa",
+	"scope": "/",
+	"display": "standalone",
+	"background_color": "white",
+	"theme_color": "rgb(59, 130, 246)"
+}
